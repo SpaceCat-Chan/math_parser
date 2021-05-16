@@ -1,11 +1,7 @@
 mod tokenize;
 
 fn main() {
-    println!("Hello, world!");
-    let a = Token {
-        token_type: TokenType::NUMBER(64.0),
-        raw: String::from("64"),
-        line: 0,
-        line_pos: (0, 2),
-    };
+    let input = String::from("(4 + 2+4)/ 3");
+    let result = tokenize::run(&input);
+    println!("input: {}\nresult: {:#?}", input, result);
 }
