@@ -38,43 +38,6 @@ impl Token {
     }
 }
 
-fn submit_token(token: &mut Option<Token>, tokens: &mut Vec<Token>, end: usize, line: &str) {
-    if let Some(mut current) = token.take() {
-        current.line_pos.1 = end;
-        match current.token_type {
-            TokenType::Identifier(_) => {
-                current.token_type = TokenType::Identifier(String::from(
-                    &line[current.line_pos.0..current.line_pos.1],
-                ))
-            }
-            TokenType::Number(_) => {
-                current.token_type = TokenType::Number(
-                    String::from(&line[current.line_pos.0..current.line_pos.1])
-                        .parse()
-                        .expect("Invalid number"),
-                )
-            }
-            _ => (),
-        }
-        tokens.push(current);
-    }
-}
-
-fn token_type(character: char) -> TokenType {
-    if character.is_ascii_digit() {
-        return TokenType::Number(0.0);
-    }
-    TokenType::Star
-}
-
-fn is_multichar_token(token_type: &TokenType) -> bool {
-    match token_type {
-        TokenType::Number(_) => true,
-        TokenType::Identifier(_) => true,
-        _ => false,
-    }
-}
-
 fn single_token_char(character: char) -> bool {
     match character {
         '+' | '-' | '*' | '/' | '(' | ')' => true,
