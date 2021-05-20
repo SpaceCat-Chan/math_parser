@@ -1,11 +1,11 @@
 #[derive(PartialEq, Debug)]
-enum Side {
+pub enum Side {
     Right,
     Left,
 }
 
 #[derive(PartialEq, Debug)]
-enum TokenType {
+pub enum TokenType {
     Number(f64),
     Plus,
     Minus,
@@ -23,9 +23,9 @@ impl TokenType {
 
 #[derive(Debug)]
 pub struct Token {
-    token_type: TokenType,
-    line: usize,
-    line_pos: (usize, usize),
+    pub token_type: TokenType,
+    pub line: usize,
+    pub line_pos: (usize, usize),
 }
 
 impl Token {
